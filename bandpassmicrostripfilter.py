@@ -34,7 +34,7 @@ import cmath
 import c_microstrip as cms
 import argparse
 
-Zo = 50
+# Zo = 50
 c = 299792458
 theta = math.pi/2
 
@@ -138,6 +138,7 @@ def main():
 
   global c
   global theta
+  global Zo
   
   parser = argparse.ArgumentParser(description='Process environmental variables.')
   parser.add_argument('--N', default=3, type=int, help='Order of the filter (3)')
@@ -152,12 +153,14 @@ def main():
   parser.add_argument('--rough', default=0, type=float, help='roughness (0)')
   parser.add_argument('--lt', default=0, type=float, help='loss tangent (0)')
   parser.add_argument('--mu', default=1, type=float, help='relative permability mu (1)')
+  parser.add_argument('--z', default=50, type=float, help='characteristic impedance (50)')
   args = parser.parse_args()
   # unpack the parser
   deltabw = args.bw
   N = args.N
   ripple = args.r
   freqGHz = args.fghz
+  Zo = args.z
 
   fr4 = cms.cmicrostrip
   fr4.er = args.er
